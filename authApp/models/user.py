@@ -30,13 +30,19 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField('Username', max_length = 15, unique=True)
     name = models.CharField('Name', max_length = 30)
+    password = models.CharField('Password', max_length= 256)
     email = models.EmailField('Email', max_length = 100)
     is_active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False) # a admin user; non super-user
+    staff = models.BooleanField(default=False) # an admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
-
+    user_creation_date = models.DateTimeField('Creation date', auto_now_add= True)
+    
     USERNAME_FIELD = 'username'
     objects = UserManager()
+
+    def save(self, **kwargs):
+        self.password = make_password(self.password)
+        super().save(**kwargs)
 
     def get_full_name(self):
         # The user is identified by their email address
