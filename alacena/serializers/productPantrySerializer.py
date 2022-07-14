@@ -1,5 +1,5 @@
 from alacena.models.product import Product
-from models.productPantry import ProductPantry
+from alacena.models.productPantry import ProductPantry
 from rest_framework import serializers
 from .productSerializer import ProductSerializer
 from authApp.models.user import User
@@ -12,11 +12,11 @@ class ProductPantrySerializer(serializers.ModelSerializer):
         fields = ['id','product', 'added_by', 'last_update_date', 'first_update_date', 'quantity', 'unit']
 
     def create(self, validated_data):
+        userData = validated_data.pop('added_by')
         productData = validated_data.pop('product')
-        productData = productData.pop('added_by')
-        userInstance = User.objects.create(**validated_data)
-        Product.objects.create(added_by=userInstance, **productData)
-        return userInstance
+        userInstance = User.objects.filter(username= userData.get('added_by'))
+        productPantryInstance = ProductPantry.objects.create(added_by=userInstance, **productData)
+        return productPantryInstance
 
     def to_representation(self, obj):
         productPantry = ProductPantry.objects.get(id= obj.id)
@@ -28,6 +28,6 @@ class ProductPantrySerializer(serializers.ModelSerializer):
                     'quantity': productPantry.quantity,
                     'unit': productPantry.get_unit_display(),
                     'last_update_date': productPantry.last_update_date,
-                    'added_by': addedBy.name,
+                    'added_by': addedBy.username,
                     'first_update_date': productPantry.first_update_date
         }

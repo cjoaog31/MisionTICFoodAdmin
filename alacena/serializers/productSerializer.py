@@ -1,4 +1,4 @@
-from models.product import Product
+from alacena.models.product import Product
 from rest_framework import serializers
 
 class ProductSerializer(serializers.ModelSerializer):

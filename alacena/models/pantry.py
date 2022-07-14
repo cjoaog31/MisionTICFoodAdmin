@@ -10,4 +10,4 @@ class Pantry(models.Model):
     owner = models.ForeignKey(User, verbose_name='Owner', on_delete=models.CASCADE, null= True)
     creation_date = models.DateTimeField("Fecha de creacion", auto_now_add=True)
     last_modification_date = models.DateTimeField("Fecha ultima modificacion", auto_now= True)
-    replenish_Rate = models.IntegerField('Frecuencia de compra',choices=ReplenishRate.choices, default= ReplenishRate.DIAS30)
+    replenish_rate = models.CharField('Frecuencia de compra',choices=ReplenishRate.choices, default= ReplenishRate.DIAS30, max_length=1)
