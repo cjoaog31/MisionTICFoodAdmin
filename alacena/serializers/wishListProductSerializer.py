@@ -20,6 +20,7 @@ class wishListProductSerializer(serializers.ModelSerializer):
         created_by = instance.created_by
         creation_date = instance.created_by
         active = instance.active
+        
 
         return{
             'created_by':created_by,
