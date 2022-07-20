@@ -1,29 +1,32 @@
-from rest_framework import serializers
+from alacena.models.product import Product
 from alacena.models.wishListProduct import WishListProduct
-from alacena.models.shoppingListWishList import ShoppingListWishList
+from rest_framework import serializers
+from .wishListProductSerializer import WishListProductSerializer
+from authApp.models.user import User
 
-class wishListProductSerializer(serializers.ModelSerializer):
-    created_by = serializers.CharField(max_length=20)
-    creation_date = serializers.DateTimeField()
-    active = serializers.BooleanField()
 
-    #Metadatos del modelo.
+class WishListProductSerializer(serializers.ModelSerializer):
+    wishListProduct = WishListProductSerializer()
     class Meta:
         model = WishListProduct
-        fields = '__all__'  
+        fields = ['id','product', 'added_by', 'last_update_date', 'quantity', 'unit']
 
-    #Metodos para devolver instancias de objetos completas en función de datos validados.
     def create(self, validated_data):
-        return WishListProduct.objects.create(**validated_data)
+        userData = validated_data.pop('added_by')
+        productData = validated_data.pop('product')
+        userInstance = User.objects.filter(username= userData.get('added_by'))
+        wishListProductInstance = WishListProduct.objects.create(added_by=userInstance, **productData)
+        return wishListProductInstance
 
-    def to_representation(self, instance):
-        created_by = instance.created_by
-        creation_date = instance.created_by
-        active = instance.active
-        
-
-        return{
-            'created_by':created_by,
-            'creation_date':creation_date,
-            'active':active
+    def to_representation(self, obj):
+        wishListProduct = wishListProduct.objects.get(id= obj.id)
+        addedBy = wishListProduct.added_by
+        product = wishListProduct.product
+        return {
+                    'id': wishListProduct.id,
+                    'name': product.name,
+                    'quantity': wishListProduct.quantity,
+                    'unit': wishListProduct.get_unit_display(),
+                    'last_update_date': wishListProduct.last_update_date,
+                    'added_by': addedBy.username,
         }
