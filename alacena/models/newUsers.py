@@ -13,3 +13,4 @@ def newUser(request):
         formulario = UserCreationForm()
     
     return render_to_response('newUser.html', {'formulario' : formulario}, context_instance = RequestContext(request))
+
