@@ -5,10 +5,7 @@ from authApp.models.user import User
 from .shoppingListSerializer import shoppingListSerializer
 
 class shoppingListSerializer(serializers.ModelSerializer):
-    created_by = serializers.CharField(max_length=20)
-    creation_date = serializers.DateTimeField()
-    active = serializers.BooleanField()
-
+    
     shoppingList = shoppingListSerializer()
 
     #Metadatos, proporciona información sobre el modelo.
@@ -19,18 +16,23 @@ class shoppingListSerializer(serializers.ModelSerializer):
 
     #Metodos para devolver instancias de objetos completas en función de datos validados.
     def create(self, validated_data):
+        created_by = serializers.CharField(max_length=20)
+        creation_date = serializers.DateTimeField()
+        active = serializers.BooleanField()
+
         return ShoppingList.objects.create(**validated_data)
 
     def to_representation(self, instance):
-        created_by = instance.created_by
-        creation_date = instance.created_by
-        active = instance.active
 
         #productosLista = ShoppingListProducts.objects.filter(shopping_list = instance.id)
-        productosLista = ShoppingListProducts.objects.get(id = instance.id)
+        productsList = ShoppingListProducts.objects.get(id = instance.id)
 
         return{
-            'created_by':created_by,
-            'creation_date':creation_date,
-            'active':active
+            'listProducts': productsList.id,
+            'products': productsList.product,
+            'quantity': productsList.quantity,
+            'unit': productsList.unit, 
+            'created_by': instance.created_by,
+            'creation_date': instance.created_by,
+            'active': instance.active
         }
