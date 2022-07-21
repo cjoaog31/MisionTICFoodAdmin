@@ -1,11 +1,15 @@
 from rest_framework import serializers
 from alacena.models.shoppingList import ShoppingList
 from alacena.models.shoppingListProducts import ShoppingListProducts
+from authApp.models.user import User
+from .shoppingListSerializer import shoppingListSerializer
 
 class shoppingListSerializer(serializers.ModelSerializer):
     created_by = serializers.CharField(max_length=20)
     creation_date = serializers.DateTimeField()
     active = serializers.BooleanField()
+
+    shoppingList = shoppingListSerializer()
 
     #Metadatos, proporciona información sobre el modelo.
     #De forma predeterminada, todos los campos del modelo en la clase se asignarán a los campos del serializador correspondiente.
@@ -22,7 +26,8 @@ class shoppingListSerializer(serializers.ModelSerializer):
         creation_date = instance.created_by
         active = instance.active
 
-        productosLista = ShoppingListProducts.objects.filter(shopping_list = instance.id)
+        #productosLista = ShoppingListProducts.objects.filter(shopping_list = instance.id)
+        productosLista = ShoppingListProducts.objects.get(id = instance.id)
 
         return{
             'created_by':created_by,
