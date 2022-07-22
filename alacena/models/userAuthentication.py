@@ -15,7 +15,7 @@ def getInto(request):
             if access is not None:
                 if access.is_active:
                     login(request, access)
-                    return HttpResponseRedirect(/XXXXXXXX)
+                    return HttpResponseRedirect('/XXXXXXXX')  # -> Path de ingreso
                 else:
                     return render_to_response('inactivo.html', context_instance=RequestContext(request))
             else:
