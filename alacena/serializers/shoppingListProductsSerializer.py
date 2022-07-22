@@ -1,8 +1,6 @@
-from alacena.models.product import Product
 from alacena.models.shoppingListProducts import ShoppingListProducts
 from rest_framework import serializers
 from .shoppingListProductsSerializer import ShoppingListProductsSerializer
-from authApp.models.user import User
 
 
 class ShoppingListProductsSerializer(serializers.ModelSerializer):
