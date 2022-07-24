@@ -4,12 +4,11 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.backends import TokenBackend
 from rest_framework.permissions import IsAuthenticated
 
-from alacena.models.pantry import Pantry
+from alacena.models.pantry import Pantry, ReplenishRate
 from alacena.serializers.pantrySerializer import PantrySerializer
-from authApp.models.user import User
 
 class PantryCreateView(views.APIView):
-
+    
     def post(self, request, *args, **kwargs):
         queryset = Pantry.objects.all()
         serializer_class = PantrySerializer
@@ -31,5 +30,24 @@ class PantryCreateView(views.APIView):
         serializer = serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-
+        
+        ##TODO
         return Response(request.data)
+
+    def get(self, request, *args, **kwargs):
+        permission_classes = (IsAuthenticated,)
+        try:
+            token = request.META.get('HTTP_AUTHORIZATION')[7:]
+            tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
+            valid_data = tokenBackend.decode(token, verify=False)
+
+            response = {}
+            choices = ReplenishRate.choices
+            for choice in choices:
+                response[choice[0]] = choice[1]
+            return Response(response, status=status.HTTP_200_OK)
+
+        except:
+            stringResponse = {'detail': 'Debe estar logueado para poder realizar esta solicitud'}
+            return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
+            
