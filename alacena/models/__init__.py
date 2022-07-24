@@ -6,3 +6,4 @@ from .shoppingList import ShoppingList
 from .shoppingListProducts import ShoppingListProducts
 from .shoppingListWishList import ShoppingListWishList
 from .wishListProduct import WishListProduct
+from .userPantryPermission import UserPantryPermission
