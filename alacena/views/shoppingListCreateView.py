@@ -3,18 +3,16 @@ from rest_framework import status, views
 from rest_framework.response import Response
 from rest_framework_simplejwt.backends import TokenBackend
 from rest_framework.permissions import IsAuthenticated
+
 from alacena.models.pantry import Pantry
-
-from alacena.serializers.productSerializer import ProductSerializer
-from alacena.serializers.productPantrySerializer import ProductPantrySerializer
 from alacena.models.userPantryPermission import UserPantryPermission
-from alacena.models.product import Product
-from alacena.models.productPantry import Unit
 
-class productAddView(views.APIView):
+from alacena.serializers.shoppingListSerializer import ShoppingListSerializer
+
+class shoppingListCreateView(views.APIView):
     
     def post(self, request, *args, **kwargs):
-        serializer_class = ProductPantrySerializer
+        serializer_class = 
         permission_classes = (IsAuthenticated,)
 
         try: 

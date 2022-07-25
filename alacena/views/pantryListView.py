@@ -39,7 +39,7 @@ class PantryListView(views.APIView):
             if len(queryset) > 0:
                 for userPantry in queryset:
                     serializer = UserPantryPermissionSerializer(instance=userPantry.pantry)
-                    pantryList.append(serializer)
+                    pantryList.append(serializer.data)
 
             if len(pantryList) > 0:
                 response["Other_Pantries"] = pantryList

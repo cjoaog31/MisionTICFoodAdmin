@@ -1,10 +1,8 @@
 from alacena.models.shoppingListProducts import ShoppingListProducts
 from rest_framework import serializers
-from .shoppingListProductsSerializer import ShoppingListProductsSerializer
 
 
 class ShoppingListProductsSerializer(serializers.ModelSerializer):
-    shoppingListProducts = ShoppingListProductsSerializer()
     class Meta:
         model = ShoppingListProducts
         fields = '__all__'

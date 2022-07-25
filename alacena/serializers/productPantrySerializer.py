@@ -1,10 +1,5 @@
-from alacena.models.pantry import Pantry
-from alacena.models.product import Product
 from alacena.models.productPantry import ProductPantry
 from rest_framework import serializers
-from .productSerializer import ProductSerializer
-from authApp.models.user import User
-
 
 class ProductPantrySerializer(serializers.ModelSerializer):
     class Meta:
