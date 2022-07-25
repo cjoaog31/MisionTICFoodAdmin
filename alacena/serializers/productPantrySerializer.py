@@ -1,3 +1,4 @@
+from alacena.models.pantry import Pantry
 from alacena.models.product import Product
 from alacena.models.productPantry import ProductPantry
 from rest_framework import serializers
@@ -6,16 +7,12 @@ from authApp.models.user import User
 
 
 class ProductPantrySerializer(serializers.ModelSerializer):
-    product = ProductSerializer()
     class Meta:
         model = ProductPantry
-        fields = ['id','product', 'added_by', 'last_update_date', 'first_update_date', 'quantity', 'unit']
+        fields = ['id','product', 'added_by', 'last_update_date', 'first_update_date', 'quantity', 'unit', 'pantry', 'expiration_date']
 
     def create(self, validated_data):
-        userData = validated_data.pop('added_by')
-        productData = validated_data.pop('product')
-        userInstance = User.objects.filter(username= userData.get('added_by'))
-        productPantryInstance = ProductPantry.objects.create(added_by=userInstance, **productData)
+        productPantryInstance = ProductPantry.objects.create(**validated_data)
         return productPantryInstance
 
     def to_representation(self, obj):

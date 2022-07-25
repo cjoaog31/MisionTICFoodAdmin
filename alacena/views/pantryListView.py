@@ -5,8 +5,9 @@ from rest_framework_simplejwt.backends import TokenBackend
 from rest_framework.permissions import IsAuthenticated
 from alacena.models.userPantryPermission import UserPantryPermission
 
-from alacena.models.pantry import Pantry, ReplenishRate
+from alacena.models.pantry import Pantry
 from alacena.serializers.pantrySerializer import PantrySerializer
+from alacena.serializers.userPantryPermissionSerializer import UserPantryPermissionSerializer
 
 class PantryListView(views.APIView):
     
@@ -23,7 +24,6 @@ class PantryListView(views.APIView):
             valid_data = tokenBackend.decode(token, verify=False)
 
             response = {}
-            print("Here")
             ##This section handles the owned pantry
             user_id = valid_data['user_id']
             queryset = Pantry.objects.get(owner=user_id)
@@ -32,17 +32,17 @@ class PantryListView(views.APIView):
                 response["owned_Pantry"] = serializer.data
             else:
                 response["owned_Pantry"] = "null"
-                
+
             ##This section handles the pantries where the profile is different
             queryset = UserPantryPermission.objects.filter(user=user_id, active = True)
-            pantryDict = {}
+            pantryList = []
             if len(queryset) > 0:
                 for userPantry in queryset:
-                    serializer = PantrySerializer(instance=userPantry.pantry)
-                    pantryDict[userPantry.pantry.id] = serializer
+                    serializer = UserPantryPermissionSerializer(instance=userPantry.pantry)
+                    pantryList.append(serializer)
 
-            if len(pantryDict) > 0:
-                response["Other_Pantries"]
+            if len(pantryList) > 0:
+                response["Other_Pantries"] = pantryList
 
             return Response(response, status=status.HTTP_200_OK)
 

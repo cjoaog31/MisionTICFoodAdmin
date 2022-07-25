@@ -13,6 +13,7 @@ class PantryCreateView(views.APIView):
         queryset = Pantry.objects.all()
         serializer_class = PantrySerializer
         permission_classes = (IsAuthenticated,)
+        #Confirmar el token
         token = request.META.get('HTTP_AUTHORIZATION')[7:]
         tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
         valid_data = tokenBackend.decode(token, verify=False)
