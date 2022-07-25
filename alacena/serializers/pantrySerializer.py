@@ -1,8 +1,6 @@
-from tkinter import INSERT
 from rest_framework import serializers
 
 from alacena.models.pantry import Pantry
-from authApp.models.user import User
 
 class PantrySerializer(serializers.ModelSerializer):
     class Meta:

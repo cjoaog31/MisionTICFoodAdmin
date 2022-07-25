@@ -1,12 +1,9 @@
 from rest_framework import serializers
 from alacena.models.shoppingListProducts import ShoppingListProducts
-from .shoppingListSerializer import shoppingListSerializer
-from shoppingListProductsSerializer import ShoppingListProductsSerializer
+from alacena.serializers.shoppingListProductsSerializer import ShoppingListProductsSerializer
 
-class shoppingListSerializer(serializers.ModelSerializer):
+class ShoppingListSerializer(serializers.ModelSerializer):
     
-    shoppingList = shoppingListSerializer()
-
     #Metadatos, proporciona información sobre el modelo.
     #De forma predeterminada, todos los campos del modelo en la clase se asignarán a los campos del serializador correspondiente.
     class Meta:
@@ -18,7 +15,6 @@ class shoppingListSerializer(serializers.ModelSerializer):
         created_by = serializers.CharField(max_length=20)
         creation_date = serializers.DateTimeField()
         active = serializers.BooleanField()
-
         return ShoppingListProducts.objects.create(**validated_data)
 
     def to_representation(self, instance):
