@@ -4,12 +4,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="stylespassword.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000">
         <div style="text-align: center;">
-            <img src="pictures/foodblue.png" class="image"/>
+            <img src="views/vistasvue/pictures/foodblue.png" class="image"/>
         </div>
-        <title>FoodMonitor Log In</title>
+        <title>User Log In</title>
     </head>
     <body>
         <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
@@ -17,7 +16,7 @@
             <div class="userbox" style="font-size: 1vw;">
 
 
-                <img src="pictures/loglogo.png" style="width: 45%; height: 45%;"/>
+                <img src="views/vistasvue/pictures/loglogo.png" style="width: 45%; height: 45%;"/>
                 <h2 class="font" style="max-width: 60%;">CURRENT USER</h2>
 
                 <form action="" style="width: 80%; height: 15%;">

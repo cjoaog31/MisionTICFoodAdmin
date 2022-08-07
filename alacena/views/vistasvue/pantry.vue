@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style_wishlist.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000" rel="stylesheet">
-    <title>FoodMonitor Inventory</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000">
+    <title>Inventory</title>
 </head>
 <body>
     <div class="box">
         <div class="firstline">
-            <form action="mainscreen.html" class="formback">
+            <form action="views/vistasvue/mainscreen.html" class="formback">
                 <button type="submit" class="back">Back</button>
             </form>
 
-            <img src="pictures/foodwhite.png" class="image"/>
+            <img src="views/vistasvue/pictures/foodwhite.png" class="image"/>
 
             <form class="formuser">
                 <button type="submit" class="user">Username</button>
@@ -24,7 +23,7 @@
         </div>
 
         <div class="secondline">
-            <h2 class="text">User's Wish List</h2>
+            <h2 class="text">Inventory</h2>
         </div>
 
         <div class="thirdline">

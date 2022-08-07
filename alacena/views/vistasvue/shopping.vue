@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000">
-    <title>WishList</title>
+    <title>Shopping List</title>
 </head>
 <body>
     <div class="box">
@@ -23,13 +23,13 @@
         </div>
 
         <div class="secondline">
-            <h2 class="text">User's Wish List</h2>
+            <h2 class="text">Shopping List</h2>
         </div>
 
         <div class="thirdline">
             <form action="" class="forminput">
                 <label for="search" class="label">Search</label>
-                <input type="text" id="search" class="input" placeholder="Search for a product">
+                <input type="text" id="search" class="input" placeholder="Search for products">
             </form>
             <form action="" class="formadd">
                 <button class="add">Add Product</button>
@@ -42,6 +42,8 @@
             <th>Id</th>
             <th>Nombre</th>
             <th>Cantidad</th>
+            <th>Compra</th>
+            <th>Expiración</th>
         </tr>
 
         <!-- agregar mas table rows automaticamente-->
@@ -58,7 +60,7 @@
 .box{
     width: 100%;
     height: 25vh;
-    background-image: linear-gradient(75deg, #05BEAD, #027675);
+    background-image: linear-gradient(75deg, #7654E8, #2B06AC);
     border-radius: 0%;
 }
 
@@ -72,7 +74,7 @@
 
 .formback{
     width: 10%;
-    height: 50%;
+    height: 40%;
     border: transparent;
     border-radius: 1vw; 
 }
@@ -82,7 +84,7 @@
     height: 100%;
     border: transparent;
     border-radius: 1vw;
-    color: #027675;
+    color: #2B06AC;
     font-weight: bolder;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5vw;
@@ -102,7 +104,7 @@
 
 .formuser{
     width: 10%;
-    height: 50%;
+    height: 40%;
     border: transparent;
     border-radius: 1vw; 
 }
@@ -112,7 +114,7 @@
     height: 100%;
     border: transparent;
     border-radius: 1vw;
-    color: #027675;
+    color: #2B06AC;
     font-weight: bolder;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5vw;
@@ -201,7 +203,7 @@
     padding-top: 1vw;
     padding-bottom: 1vw;
     text-align: center;
-    background-color: #027675;
+    background-color: #2B06AC;
     border-radius: 0% 0% 1.5vw 1.5vw;
 }
 </style>
