@@ -52,7 +52,7 @@
                     </button>
                 </form>
 
-                <form action="views/vistasvue/...." class="shop">
+                <form action="views/vistasvue/shopping.vue" class="shop">
                     <button class="shop-text">
                     SHOPPING
                     </button>
