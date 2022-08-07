@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+
+<template v-if="loginType === 'username'">
+  <label>Nombre de Usuario</label>
+  <input placeholder="Ingrese su nombre de usuario">
+</template>
+<template v-else>
+  <label>Email</label>
+  <input placeholder="Ingrese su email">
+</template>
+
+=======
+>>>>>>> 24f39e9da3bfc36891f3dbfa67605a4405e31a41
 <template>
 <!DOCTYPE html>
 <html lang="en">
