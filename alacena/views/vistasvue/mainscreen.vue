@@ -8,7 +8,7 @@
         <link href="stylesmainscreen.css" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000">
         <div style="display: flex; justify-content: center; flex-direction: row; text-align: center; vertical-align: middle;">
-            <img src="pictures/foodblue.png" class="image" />
+            <img src="views/vistasvue/pictures/foodblue.png" class="image" />
             <span>
                 <button style=" width: 3vw; height: 3vw; border-radius: 50px; "></button>
             </span>
@@ -171,7 +171,7 @@ vertical-align: middle;
 
 .inventory {
     width: 29.16%; height: 38vh;
-    background-image: url(pictures/fruitdark.jpg);
+    background-image: url(views/vistasvue/pictures/fruitdark.jpg);
     background-size: cover; background-position: 61%;
     margin-top: 35px ;
     margin-bottom: 35px ;
@@ -197,7 +197,7 @@ vertical-align: middle;
 
 .users {
     width: 29.16%; height: 38vh;
-    background-image: url(pictures/userdark.jpg);
+    background-image: url(views/vistasvue/pictures/userdark.jpg);
     background-size: cover; background-position: 50%;
     margin-top: 35px ;
     margin-bottom: 35px ;
@@ -224,7 +224,7 @@ vertical-align: middle;
 
 .wish {
     width: 100%; height: 15vh;
-    background-image: url(pictures/wishlistdark.jpg);
+    background-image: url(views/vistasvue/pictures/wishlistdark.jpg);
     background-size: cover; background-position: 2% 2%;
     margin-top: 0px ;
     margin-bottom: 17px ;
@@ -250,7 +250,7 @@ vertical-align: middle;
 
 .shop {
     width: 100%; height: 15vh;
-    background-image: url(pictures/wishlistdark.jpg);
+    background-image: url(views/vistasvue/pictures/wishlistdark.jpg);
     background-size: cover; background-position: 2% 2%;
     margin-top: 17px ;
     margin-bottom: 0px ;
