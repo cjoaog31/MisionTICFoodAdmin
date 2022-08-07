@@ -5,7 +5,6 @@
         <meta charset="utf-8"/>
         
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="stylesmainscreen.css" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000">
         <div style="display: flex; justify-content: center; flex-direction: row; text-align: center; vertical-align: middle;">
             <img src="views/vistasvue/pictures/foodblue.png" class="image" />

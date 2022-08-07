@@ -5,16 +5,16 @@
         <meta charset="utf-8"/>
         
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="style_userselect.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000">
+        <title>Select User</title>
     </head>
     <body>
         <div class="firstline">
-            <form action="mainscreen.html" class="formback">
+            <form action="views/vistasvue/mainscreen.html" class="formback">
                 <button type="submit" class="back">Back</button>
             </form>
 
-            <img src="pictures/foodblue.png" class="image"/>
+            <img src="views/vistasvue/pictures/foodblue.png" class="image"/>
         </div>
 
 
