@@ -1,5 +1,12 @@
 
-
+<template v-if="loginType === 'username'">
+  <label>Nombre de Usuario</label>
+  <input placeholder="Ingrese su nombre de usuario">
+</template>
+<template v-else>
+  <label>Email</label>
+  <input placeholder="Ingrese su email">
+</template>
 
 <template>
         <div style="margin: auto;" class="containerup">
