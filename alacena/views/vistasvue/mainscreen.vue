@@ -39,7 +39,7 @@
         </div>
         <div style="margin: auto;" class="containerdown">
 
-            <form action="inventory.html" class="inventory">
+            <form action="views/vistasvue/pantry.vue" class="inventory">
             <button class="inventory-text">
             INVENTARIO
             </button>
@@ -47,13 +47,13 @@
 
             <span class="verticalwish">
 
-                <form action="" class="wish">
+                <form action="views/vistasvue/wishlist.vue" class="wish">
                     <button class="wish-text">
                     WISHLIST
                     </button>
                 </form>
 
-                <form action="" class="shop">
+                <form action="views/vistasvue/...." class="shop">
                     <button class="shop-text">
                     SHOPPING
                     </button>
@@ -61,7 +61,7 @@
 
             </span>
 
-            <form action="" class="users">
+            <form action="views/vistasvue/userselect.vue" class="users">
                 <button class="users-text">
                 USERS
                 </button>
