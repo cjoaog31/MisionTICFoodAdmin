@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-
-<template v-if="loginType === 'username'">
-  <label>Nombre de Usuario</label>
-  <input placeholder="Ingrese su nombre de usuario">
-</template>
-<template v-else>
-  <label>Email</label>
-  <input placeholder="Ingrese su email">
-</template>
-
-=======
->>>>>>> 24f39e9da3bfc36891f3dbfa67605a4405e31a41
 <template>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="stylesinventory.css" rel="stylesheet">
+    <link href="style_wishlist.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100, 10000, 25000" rel="stylesheet">
     <title>FoodMonitor Inventory</title>
 </head>
@@ -37,13 +24,13 @@
         </div>
 
         <div class="secondline">
-            <h2 class="text">INVENTORY</h2>
+            <h2 class="text">User's Wish List</h2>
         </div>
 
         <div class="thirdline">
             <form action="" class="forminput">
                 <label for="search" class="label">Search</label>
-                <input type="text" id="search" class="input" placeholder="Search for products">
+                <input type="text" id="search" class="input" placeholder="Search for a product">
             </form>
             <form action="" class="formadd">
                 <button class="add">Add Product</button>
@@ -56,8 +43,6 @@
             <th>Id</th>
             <th>Nombre</th>
             <th>Cantidad</th>
-            <th>Compra</th>
-            <th>Expiración</th>
         </tr>
 
         <!-- agregar mas table rows automaticamente-->
@@ -74,8 +59,8 @@
 .box{
     width: 100%;
     height: 25vh;
-    background-image: linear-gradient(75deg, #7654E8, #2B06AC);
-    border-radius: 0% 0% 2vw 2vw;
+    background-image: linear-gradient(75deg, #05BEAD, #027675);
+    border-radius: 0%;
 }
 
 .firstline{
@@ -88,7 +73,7 @@
 
 .formback{
     width: 10%;
-    height: 40%;
+    height: 50%;
     border: transparent;
     border-radius: 1vw; 
 }
@@ -98,7 +83,7 @@
     height: 100%;
     border: transparent;
     border-radius: 1vw;
-    color: #2B06AC;
+    color: #027675;
     font-weight: bolder;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5vw;
@@ -118,7 +103,7 @@
 
 .formuser{
     width: 10%;
-    height: 40%;
+    height: 50%;
     border: transparent;
     border-radius: 1vw; 
 }
@@ -128,7 +113,7 @@
     height: 100%;
     border: transparent;
     border-radius: 1vw;
-    color: #2B06AC;
+    color: #027675;
     font-weight: bolder;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5vw;
@@ -217,7 +202,7 @@
     padding-top: 1vw;
     padding-bottom: 1vw;
     text-align: center;
-    background-color: #2B06AC;
-    border-radius: 1.5vw;
+    background-color: #027675;
+    border-radius: 0% 0% 1.5vw 1.5vw;
 }
 </style>
