@@ -31,8 +31,8 @@
                 <label for="search" class="label">Search</label>
                 <input type="text" id="search" class="input" placeholder="Search for a product">
             </form>
-            <form action="" class="formadd">
-                <button class="add">Add Product</button>
+            <form action="views/vistasvue/add_popup.vue" class="formadd">
+                <button  class="add">Add Product</button>
             </form>
         </div>
     </div>
