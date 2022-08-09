@@ -11,9 +11,18 @@ from alacena.models.userPantryPermission import UserPantryPermission
 from alacena.models.product import Product
 from alacena.models.productPantry import Unit
 
-class productAddView(views.APIView):
-    
+class ProductAddView(views.APIView):
+    """
+    Esta vista se encarga de proporcionar la informacion necesaria para crear un producto
+    Adicionalmente cuenta con los metodos para crear un producto en el sistema y dentro de una de las pantry
+    En caso de que los productos no existan de antemano en el sistema se crean y se añaden a la base
+    En caso de existir soloes necesario que sean seleccionados
+    """
+
+    #DONE
+
     def post(self, request, *args, **kwargs):
+
         serializer_class = ProductPantrySerializer
         permission_classes = (IsAuthenticated,)
 
@@ -64,6 +73,11 @@ class productAddView(views.APIView):
                 request.data["product"] = productId
                 request.data["added_by"] = user_id
                 request.data["pantry"] = pantryId
+                
+                # Se valida que la cantidad a ingresar del producto sea mayor a 0 en caso contrario se retorna un mensaje de error
+                if request.data.get("quantity") <= 0:
+                    stringResponse = {'detail': 'No se puede adicionar un producto con una cantidad de 0 o menor'}
+                    return Response(stringResponse, status=status.HTTP_400_BAD_REQUEST)
 
                 serializer = serializer_class(data=request.data)
                 serializer.is_valid(raise_exception=True)
@@ -98,8 +112,6 @@ class productAddView(views.APIView):
                     productList.append(productSerialized.data)
 
                 response["Product_List"] = productList
-            
-
             unitList = {}
 
             choices = Unit.choices

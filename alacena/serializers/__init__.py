@@ -1,5 +1,4 @@
 from .pantrySerializer import PantrySerializer
 from .productPantrySerializer import ProductPantrySerializer
 from .productSerializer import ProductSerializer
-from .shoppingListSerializer import ShoppingListSerializer
-from .shoppingListProductsSerializer import ShoppingListProductsSerializer
+from .wishListProductSerializer import WishListProductSerializer

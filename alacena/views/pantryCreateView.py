@@ -8,6 +8,11 @@ from alacena.models.pantry import Pantry, ReplenishRate
 from alacena.serializers.pantrySerializer import PantrySerializer
 
 class PantryCreateView(views.APIView):
+    """
+    Con esta vista se crea un pantry para el usuario logueado
+    """
+
+    #DONE
     
     def post(self, request, *args, **kwargs):
         queryset = Pantry.objects.all()
@@ -32,8 +37,8 @@ class PantryCreateView(views.APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         
-        ##TODO
-        return Response(request.data)
+        stringResponse = {'detail': 'Se ha creado la alacena correctamente'}
+        return Response(stringResponse, status=status.HTTP_201_CREATED)
 
     def get(self, request, *args, **kwargs):
         permission_classes = (IsAuthenticated,)

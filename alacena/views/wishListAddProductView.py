@@ -4,14 +4,13 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.backends import TokenBackend
 from rest_framework.permissions import IsAuthenticated
 from alacena.models.pantry import Pantry
-
-from alacena.serializers.productSerializer import ProductSerializer
-from alacena.serializers.wishListProductSerializer import WishListProductSerializer
+from alacena.models.wishListProduct import WishListProduct
 from alacena.models.userPantryPermission import UserPantryPermission
-from alacena.models.product import Product
-from alacena.models.productPantry import Unit
 
-class wishListProductSerializer(views.APIView):
+from alacena.serializers.wishListProductSerializer import WishListProductSerializer
+
+
+class wishListAddProduct(views.APIView):
     
     def post(self, request, *args, **kwargs):
         serializer_class = WishListProductSerializer
@@ -42,19 +41,14 @@ class wishListProductSerializer(views.APIView):
                         authorized = True
 
             if authorized:    
-                # Se encarga de validar si el producto existe o no en la base de datos
-                # En caso de que no exista lo crea y si lo llega a encontrar hace una referencia a él para evitar duplicar 
-                productId = request.data.pop("productId")
-                
+                                
                 if productId == "null":
 
-                    nameString = request.data.pop("name")
-                    productSearch = Product.objects.filter(name=nameString)
+                    nameString = request.data.get("name")
+                    productSearch = WishListProduct.objects.filter(name=nameString, pantry=ownedPantry, active=True)
 
                     if len(productSearch) == 0:
-                        prodDict = {}
-                        prodDict["name"] = nameString
-                        serializer = ProductSerializer(data=prodDict)
+                        serializer = WishListProductSerializer(data=request.data)
                         serializer.is_valid(raise_exception=True)
                         savedProduct = serializer.save()
                         productId = savedProduct.id

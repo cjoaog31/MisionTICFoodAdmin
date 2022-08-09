@@ -11,7 +11,7 @@ class ProductPantrySerializer(serializers.ModelSerializer):
         return productPantryInstance
 
     def to_representation(self, obj):
-        productPantry = ProductPantry.objects.get(id= obj.id)
+        productPantry = obj
         addedBy = productPantry.added_by
         product = productPantry.product
         return {
