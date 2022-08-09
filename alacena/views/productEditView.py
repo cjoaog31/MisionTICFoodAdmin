@@ -12,15 +12,16 @@ from alacena.models.product import Product
 from .exceptions import IncorrectPantryProduct
 
 class ProductEditView(views.APIView):
+    """
+    Esta vista se encarga de actualizar los productos de una alacena. Se podrán modificar solo si se cuenta con los permisos necesarios
+    acepta varios productos al tiempo o solo uno de ellos, en caso de que el valor llegue a 0 el producto se inactiva
+    """
+
+    #DONE
 
     @transaction.non_atomic_requests
     def post(self, request, *args, **kwargs):
-        """
-        Esta vista se encarga de actualizar los productos de una alacena. Se podrán modificar solo si se cuenta con los permisos necesarios
-        acepta varios productos al tiempo o solo uno de ellos, en caso de que el valor llegue a 0 el producto se inactiva
-        """
-
-        #DONE
+        
         
         try: 
         ##Se encarga de validar el token y de quien es el que está realizando la solicitud
@@ -78,3 +79,7 @@ class ProductEditView(views.APIView):
         else:
             stringResponse = {'detail': 'No se tiene permiso para realizar esta accion'}
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
+
+    def get(self, request, *args, **kwargs):
+        stringResponse = {'detail': 'El metodo get no está habilitado para este endpoint'}
+        return Response(stringResponse, status=status.HTTP_400_BAD_REQUEST)

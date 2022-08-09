@@ -10,7 +10,12 @@ from alacena.models.userPantryPermission import UserPantryPermission
 from alacena.serializers.wishListProductSerializer import WishListProductSerializer
 
 
-class wishListAddProduct(views.APIView):
+class wishListAddProductView(views.APIView):
+    """
+    Esta vista se encarga de adicionar un producto al wishlist de la alacena
+    """
+
+    #DONE
     
     def post(self, request, *args, **kwargs):
         serializer_class = WishListProductSerializer
@@ -41,34 +46,19 @@ class wishListAddProduct(views.APIView):
                         authorized = True
 
             if authorized:    
-                                
-                if productId == "null":
-
-                    nameString = request.data.get("name")
-                    productSearch = WishListProduct.objects.filter(name=nameString, pantry=ownedPantry, active=True)
-
-                    if len(productSearch) == 0:
-                        serializer = WishListProductSerializer(data=request.data)
-                        serializer.is_valid(raise_exception=True)
-                        savedProduct = serializer.save()
-                        productId = savedProduct.id
-                    else:
-                        productId = productSearch[0].id
-
-                request.data["product"] = productId
-                request.data["added_by"] = user_id
-                request.data["pantry"] = pantryId
-
-                serializer = serializer_class(data=request.data)
+                
+                serializer = WishListProductSerializer(data=request.data)
                 serializer.is_valid(raise_exception=True)
-                serializer.save()
-
-                stringResponse = {'detail': 'Se ha adicionado el producto a la lista de deseos'}
+                savedProduct = serializer.save()
+                stringResponse = {'detail': 'Se ha adicionado el producto al wishlist correctamente'}           
                 return Response(stringResponse, status=status.HTTP_201_CREATED)
-
             else:
                 stringResponse = {'detail': 'No se tiene permiso para realizar esta accion'}
                 return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
         except:
             stringResponse = {'detail': 'Debe estar logueado para poder realizar esta solicitud'}
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
+
+    def get(self, request, *args, **kwargs):
+        stringResponse = {'detail': 'El metodo get no está habilitado para este endpoint'}
+        return Response(stringResponse, status=status.HTTP_400_BAD_REQUEST)
