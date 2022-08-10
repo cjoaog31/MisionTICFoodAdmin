@@ -10,7 +10,7 @@ from alacena.models.userPantryPermission import UserPantryPermission
 from alacena.serializers.wishListProductSerializer import WishListProductSerializer
 
 
-class wishListAddProductView(views.APIView):
+class WishListAddProductView(views.APIView):
     """
     Esta vista se encarga de adicionar un producto al wishlist de la alacena
     """
