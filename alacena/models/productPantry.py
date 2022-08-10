@@ -23,4 +23,4 @@ class ProductPantry(models.Model):
     expiration_date = models.DateField('Fecha de vencimiento')
     quantity = models.FloatField('Cantidad')
     unit = models.CharField('Unidad', choices= Unit.choices, default= Unit.U, max_length=20)
-    
+    active = models.BooleanField('Activo', default=True)

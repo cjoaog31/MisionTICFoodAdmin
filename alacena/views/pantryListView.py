@@ -10,6 +10,11 @@ from alacena.serializers.pantrySerializer import PantrySerializer
 from alacena.serializers.userPantryPermissionSerializer import UserPantryPermissionSerializer
 
 class PantryListView(views.APIView):
+    """
+    Esta vista entrega la lista de pantries a las cuales tiene acceso el usuario conectado, no cuenta con metodo post dado que solo es de consulta
+    """
+
+    #DONE
     
     def post(self, request, *args, **kwargs):
         stringResponse = {'detail': 'El metodo post no está habilitado para este endpoint'}

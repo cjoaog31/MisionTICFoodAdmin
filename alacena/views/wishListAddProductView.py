@@ -4,14 +4,18 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.backends import TokenBackend
 from rest_framework.permissions import IsAuthenticated
 from alacena.models.pantry import Pantry
-
-from alacena.serializers.productSerializer import ProductSerializer
-from alacena.serializers.wishListProductSerializer import WishListProductSerializer
+from alacena.models.wishListProduct import WishListProduct
 from alacena.models.userPantryPermission import UserPantryPermission
-from alacena.models.product import Product
-from alacena.models.productPantry import Unit
 
-class wishListProductSerializer(views.APIView):
+from alacena.serializers.wishListProductSerializer import WishListProductSerializer
+
+
+class wishListAddProductView(views.APIView):
+    """
+    Esta vista se encarga de adicionar un producto al wishlist de la alacena
+    """
+
+    #DONE
     
     def post(self, request, *args, **kwargs):
         serializer_class = WishListProductSerializer
@@ -42,39 +46,19 @@ class wishListProductSerializer(views.APIView):
                         authorized = True
 
             if authorized:    
-                # Se encarga de validar si el producto existe o no en la base de datos
-                # En caso de que no exista lo crea y si lo llega a encontrar hace una referencia a él para evitar duplicar 
-                productId = request.data.pop("productId")
                 
-                if productId == "null":
-
-                    nameString = request.data.pop("name")
-                    productSearch = Product.objects.filter(name=nameString)
-
-                    if len(productSearch) == 0:
-                        prodDict = {}
-                        prodDict["name"] = nameString
-                        serializer = ProductSerializer(data=prodDict)
-                        serializer.is_valid(raise_exception=True)
-                        savedProduct = serializer.save()
-                        productId = savedProduct.id
-                    else:
-                        productId = productSearch[0].id
-
-                request.data["product"] = productId
-                request.data["added_by"] = user_id
-                request.data["pantry"] = pantryId
-
-                serializer = serializer_class(data=request.data)
+                serializer = WishListProductSerializer(data=request.data)
                 serializer.is_valid(raise_exception=True)
-                serializer.save()
-
-                stringResponse = {'detail': 'Se ha adicionado el producto a la lista de deseos'}
+                savedProduct = serializer.save()
+                stringResponse = {'detail': 'Se ha adicionado el producto al wishlist correctamente'}           
                 return Response(stringResponse, status=status.HTTP_201_CREATED)
-
             else:
                 stringResponse = {'detail': 'No se tiene permiso para realizar esta accion'}
                 return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
         except:
             stringResponse = {'detail': 'Debe estar logueado para poder realizar esta solicitud'}
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
+
+    def get(self, request, *args, **kwargs):
+        stringResponse = {'detail': 'El metodo get no está habilitado para este endpoint'}
+        return Response(stringResponse, status=status.HTTP_400_BAD_REQUEST)
